@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: my-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: .env
+        value: production
+      - key: PORT
+        value: 5000
+    routes:
+      - name: user-login
+        path: /user/login
+        healthCheckPath: /
+    cors:
+      allow_origin: 'http://localhost:3001'
+      allow_methods: 'GET, POST, PUT, DELETE, OPTIONS'
+      allow_headers: 'X-Requested-With, Content-Type, Authorization'
